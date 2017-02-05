@@ -112,7 +112,7 @@ with tf.Session() as sess:
             batch_x, batch_y = X_train[offset:end], y_train[offset:end]
             sess.run(training_operation, feed_dict={x: batch_x, y: batch_y})
 
-        validation_loss, validation_accuracy = evaluate(X_valid, y_valid)
+        validation_loss, validation_accuracy = evaluate(X_valid, y_valid, sess)
         print("EPOCH {} ...".format(i+1))
         print("Time: %.3f seconds" % (time.time() - t0))
         print("Validation Loss = {:.3f}".format(validation_loss))
