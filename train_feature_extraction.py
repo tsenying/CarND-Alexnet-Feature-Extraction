@@ -59,7 +59,10 @@ probs = tf.nn.softmax(logits)
 # be able to reuse some the code.
 
 # loss
-cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits, one_hot_y)
+#cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits, one_hot_y)
+# NOTE using sparse_softmax_cross_entropy_with_logits instead of softmax_cross_entropy_with_logits
+# so labels are not one hot encoded, just passing in index to classes 
+cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(logits, y)
 
 # training
 loss_operation = tf.reduce_mean(cross_entropy)
@@ -94,7 +97,7 @@ def evaluate(X_data, y_data, sess):
 
 # train model
 
-EPOCHS = 2
+EPOCHS = 5
 BATCH_SIZE = 128
 
 with tf.Session() as sess:
