@@ -32,7 +32,8 @@ resized = tf.image.resize_images(x, (227, 227))
 
 y = tf.placeholder(tf.int32, (None))
 # one hot encode labels, depth = num classes = 43
-one_hot_y = tf.one_hot(y, 43)
+nb_classes = 43
+one_hot_y = tf.one_hot(y, nb_classes)
 
 
 # TODO: pass placeholder as first argument to `AlexNet`.
